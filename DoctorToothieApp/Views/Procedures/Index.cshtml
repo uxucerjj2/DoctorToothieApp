@@ -1,0 +1,43 @@
+﻿@model List<ProcedureType>
+@{
+}
+
+<a asp-action="New">Nowy typ</a>
+
+<table>
+	<thead>
+		<tr>
+			<th class="p-2">
+				Procedura
+			</th>
+			<th class="p-2">
+				Opis
+			</th>
+			<th class="p-2">
+				Cena
+			</th>
+			<th class="p-2">
+				Akcje
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var entry in Model)
+		{
+			<tr>
+				<td class="p-2">
+					@entry.Title
+				</td>
+				<td class="p-2">
+					@entry.Description
+				</td>
+				<td class="p-2">
+					@entry.BasePrice
+				</td>
+				<td class="p-2">
+					<a class="btn btn-danger" asp-action="edit" asp-route-id="@entry.Id">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

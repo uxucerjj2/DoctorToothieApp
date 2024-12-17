@@ -1,0 +1,100 @@
+﻿@using DoctorToothieApp.Controllers
+@model DoctorToothieApp.Controllers.ReserveIndexVM
+
+<h1>Twoje Rezerwacje</h1>
+
+@if(Model.InProgress != null)
+{
+    <h2>Dokończ rezerwację</h2>
+    @switch (Model.InProgress.Stage)
+    {
+        case ReservationStage.LOCATION:
+            <a class="btn btn-primary" asp-controller="Reserve" asp-action="Location">Dokończ</a>
+            break;
+        case ReservationStage.ROOM:
+            <a class="btn btn-primary" asp-controller="Reserve" asp-action="Room">Dokończ</a>
+            break;
+        case ReservationStage.PATIENT:
+            <a class="btn btn-primary" asp-controller="Reserve" asp-action="Patient">Dokończ</a>
+            break;
+        case ReservationStage.DOCTOR:
+            <a class="btn btn-primary" asp-controller="Reserve" asp-action="Doctor">Dokończ</a>
+            break;
+        case ReservationStage.PROCEDURE:
+            <a class="btn btn-primary" asp-controller="Reserve" asp-action="Procedure">Dokończ</a>
+            break;
+        case ReservationStage.DATE:
+            <a class="btn btn-primary" asp-controller="Reserve" asp-action="Date">Dokończ</a>
+            break;
+        case ReservationStage.REVIEW_CLIENT:
+            <a class="btn btn-primary" asp-controller="Reserve" asp-action="Review">Dokończ</a>
+            break;
+    }
+
+}
+else
+{
+    <h2>Zrób rezerwację</h2>
+    <a class="btn btn-primary" asp-controller="Reserve" asp-action="Location">Nowa</a>
+}
+
+@if (Model.Current.Count > 0)
+{
+    <h2 class="text-center">Aktualne</h2>
+    <div class="d-flex">
+        @foreach (var item in Model.Current)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">
+                        <h5 class="card-body">
+                            Wizyta
+                        </h5>
+                        <div>
+                            Pacjent: @item.Patient.FirstName @item.Patient.LastName
+                        </div>
+                        <div>
+                            @item.Location.Name - @item.Room.Number
+                        </div>
+                        <div>
+                            Operacja: @item.ProcedureType.Title
+                        </div>
+                        <div>
+                            Kiedy: @(((DateTime)item.Time!).ToStr())
+                        </div>
+                        <div>
+                            Notatka: @item.ProcedureNotes
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@if (Model.Ended.Count > 0)
+{
+    <h2 class="text-center">Historyczne</h2>
+    <div class="d-flex flex-wrap gap-4">
+        @foreach (var item in Model.Ended)
+        {
+            <div class="card card-body">
+                <div class="card-title">
+                    Pacjent: @item.Patient.FirstName @item.Patient.LastName
+                </div>
+                <div>
+                    @item.Location.Name - @item.Room.Number
+                </div>
+                <div>
+                    Operacja: @item.ProcedureType.Title
+                </div>
+                <div>
+                    Notka: @item.ProcedureNotes
+                </div>
+                <div>
+                    Notka: @item.Time
+                </div>
+            </div>
+        }
+    </div>
+}

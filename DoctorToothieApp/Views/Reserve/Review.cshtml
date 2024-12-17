@@ -1,0 +1,29 @@
+﻿
+@model Reservation
+@{
+}
+<h2>Potwierdź czy dane są prawidłowe</h2>
+
+<div>
+	@Model.Patient.FirstName
+</div>
+<div>
+	@Model.Location.Name
+</div>
+<div>
+	@Model.Room.Number
+</div>
+<div>
+	@Model.Doctor.FirstName
+</div>
+<div>
+	@Model.ProcedureType.Title
+</div>
+
+<div>
+	@(((DateTime)Model.Time!).ToString("yyyy-MM-dd"))
+</div>
+
+<a class="btn btn-primary" asp-action="Date">Cofnij</a>
+<a class="btn btn-danger" asp-action="Cancel">Anuluj</a>
+<a class="btn btn-success" asp-action="Reserve">Zarezerwuj</a>

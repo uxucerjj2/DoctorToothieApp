@@ -1,0 +1,41 @@
+﻿@model List<AppUser>
+
+<h1>Doktorzy</h1>
+
+<a asp-action="FixRoles" class="btn btn-primary">Refresh/Fix Roles</a>
+<a asp-action="New" class="btn btn-primary">Dodaj doktora</a>
+
+<table>
+	<thead>
+		<tr>
+			<td class="p-2">
+				Doktor
+			</td>
+			<td class="p-2">
+				Pracuje w
+			</td>
+			<td class="p-2">
+				Akcje
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var doc in Model)
+		{
+			<tr>
+				<td class="p-2">
+					@doc.FirstName @doc.LastName<br/>
+					@doc.Email
+				</td>
+				<td class="p-2">
+					@doc.EmployeedLocation.Name<br/>
+					@doc.EmployeedLocation.Address
+				</td>
+				<td class="p-2">
+					<a asp-action="Edit" asp-route-id="@doc.Id" class="btn btn-primary">Zmień</a>
+					<a asp-action="Remove" asp-route-id="@doc.Id" class="btn btn-danger">Usuń</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

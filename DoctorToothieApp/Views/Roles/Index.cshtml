@@ -1,0 +1,38 @@
+﻿@model List<DoctorToothieApp.Controllers.UserEntry>
+@{
+}
+
+<h2>Role</h2>
+
+<table >
+	<thead>
+		<tr>
+			<th class="p-2">
+				User
+			</th>
+			<th class="p-2">
+				Role
+			</th>
+			<th class="p-2">
+				Akcje
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var entry in Model)
+		{
+			<tr>
+				<td class="p-2">
+					@entry.User.FirstName @entry.User.LastName<br/>
+					@entry.User.Email
+				</td>
+				<td class="p-2">
+					@string.Join(",", entry.Roles)
+				</td>
+				<td class="p-2">
+					<a class="btn btn-danger" asp-action="edituser" asp-route-user="@entry.User.Id">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

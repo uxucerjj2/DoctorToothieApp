@@ -1,0 +1,36 @@
+﻿@model DoctorToothieApp.Controllers.ChildrenNewVM
+
+<form asp-action="New" autocomplete="off">
+
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<div class="form-group">
+		<label asp-for="FirstName" class="control-label"></label>
+		<input asp-for="FirstName" autocomplete="off" />
+		<span asp-validation-for="FirstName" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="LastName" class="control-label"></label>
+		<input asp-for="LastName" autocomplete="off" />
+		<span asp-validation-for="LastName" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Email" class="control-label"></label>
+		<input asp-for="Email" />
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Password" class="control-label"></label>
+		<input asp-for="Password" autocomplete="off" />
+		<span asp-validation-for="Password" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="ConfirmPassword" class="control-label"></label>
+		<input asp-for="ConfirmPassword" autocomplete="off" />
+		<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+	</div>
+	<div>
+		<a asp-action="Index" class="btn btn-primary">Cofnij</a>
+		<button class="btn btn-primary" type="submit">Dodaj</button>
+	</div>
+
+</form>

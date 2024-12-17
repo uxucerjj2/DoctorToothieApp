@@ -1,0 +1,77 @@
+﻿@model DoctorToothieApp.Controllers.AppointmentsIndexVM
+
+<h1 class="text-center">Wizyty</h1>
+
+<div class="d-flex">
+	<div class="flex-grow-1">
+		<h2 class="text-center">Zatwierdzone</h2>
+		<div class="d-grid gap-2 p-2">
+			@foreach (var item in Model.Current)
+			{
+				<div class="card card-body">
+
+					<div>
+						Pacjent: @item.Patient.FirstName @item.Patient.LastName
+					</div>
+					<div>
+						@item.Location.Name - @item.Room.Number
+					</div>
+					<div>
+						Operacja: @item.ProcedureType.Title
+					</div>
+					<div>
+						<a class="btn btn-danger" asp-action="Cancel" asp-route-id="@item.Id">Anuluj</a>
+						<a class="btn btn-danger" asp-action="Done" asp-route-id="@item.Id">Zakończ</a>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+	<div class="flex-grow-1">
+		<h2 class="text-center">Do akceptacji</h2>
+		<div class="d-grid gap-2 p-2">
+			@foreach (var item in Model.ToAccept)
+			{
+				<div class="card card-body">
+					
+					<div>
+						Pacjent: @item.Patient.FirstName @item.Patient.LastName
+					</div>
+					<div>
+						@item.Location.Name - @item.Room.Number
+					</div>
+					<div>
+						Operacja: @item.ProcedureType.Title
+					</div>
+					<div>
+						<a class="btn btn-primary" asp-action="review" asp-route-id="@item.Id">Review</a>
+					</div>
+
+				</div>
+			}
+		</div>
+		
+	</div>
+</div>
+<h2 class="text-center">Historyczne</h2>
+<div class="d-grid gap-2 p-2">
+	@foreach (var item in Model.History)
+	{
+		<div class="card card-body">
+
+			<div>
+				Status: @Model.StageToString(item.Stage)
+				</div>
+			<div>
+				Pacjent: @item.Patient.FirstName @item.Patient.LastName
+			</div>
+			<div>
+				@item.Location.Name - @item.Room.Number
+			</div>
+			<div>
+				Operacja: @item.ProcedureType.Title
+			</div>
+
+		</div>
+	}
+</div>

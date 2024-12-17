@@ -1,0 +1,19 @@
+﻿@model List<AppUser>
+
+<h1>Członkowie rodziny</h1>
+
+<a class="btn btn-primary" asp-action="New">Dodaj członka</a>
+
+<div class="d-flex flex-wrap" >
+	@foreach(var child in Model)
+	{
+		<div class="card">
+			<div class="card-body">
+				@child.FirstName @child.LastName<br/>
+				@child.Email<br/>
+				<a class="btn btn-primary" asp-action="edit" asp-route-id="@child.Id">Edytuj</a>
+			</div>
+			
+		</div>
+	}
+</div>

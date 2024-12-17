@@ -1,0 +1,35 @@
+﻿
+@model Reservation
+@{
+}
+<h2>Potwierdź czy dane są prawidłowe</h2>
+
+<form asp-action="Accept">
+	<input hidden asp-for="Id"/>
+
+	<div>
+		<div>@Model.Location.Name <br/> @Model.Location.Address</div>
+		<div>W pokoju: @Model.Room.Number</div>
+		<div>Pacjent: @Model.Patient.FirstName @Model.Patient.LastName</div>
+		<div>Operacja: @Model.ProcedureType.Title <br/> @Model.ProcedureType.Description</div>
+	</div>
+
+
+	<div class="form-control">
+		<label asp-for="Time" class="control-label"></label>
+		<input asp-for="Time" type="datetime-local" />
+		<span asp-validation-for="Time" class="text-danger"></span>
+	</div>
+
+	<div class="form-control">
+		<label asp-for="ProcedureNotes" class="control-label"></label>
+		<textarea asp-for="ProcedureNotes" autocomplete="off" ></textarea>
+		<span asp-validation-for="ProcedureNotes" class="text-danger"></span>
+	</div>
+
+	<div>
+		<a class="btn btn-danger" asp-action="Cancel" asp-route-id="@Model.Id">Anuluj</a>
+		<button type="submit" class="btn btn-success" >Akceptuj</button>
+	</div>
+
+</form>
